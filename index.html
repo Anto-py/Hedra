@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEDRA — Système de Génération Pédagogique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --retro-teal: #127676;
+            --retro-orange: #E4632E;
+            --retro-jaune: #E3A535;
+            --retro-ink: #0D1617;
+            --retro-paper: #F2EFE6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--retro-ink);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+        }
+
+        .page-frame {
+            background: var(--retro-paper);
+            border: 4px solid var(--retro-orange);
+            border-radius: 8px;
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            min-height: 500px;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Ornements art nouveau aux coins */
+        .corner-flourish {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            color: var(--retro-teal);
+            opacity: 0.5;
+            font-size: 40px;
+            line-height: 1;
+        }
+        .corner-flourish.top-left { top: 10px; left: 14px; }
+        .corner-flourish.top-right { top: 10px; right: 14px; transform: scaleX(-1); }
+        .corner-flourish.bottom-left { bottom: 10px; left: 14px; transform: scaleY(-1); }
+        .corner-flourish.bottom-right { bottom: 10px; right: 14px; transform: scale(-1); }
+
+        /* Logo HEDRA */
+        .logo-container {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .logo-symbol {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            position: relative;
+        }
+
+        .logo-symbol svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .logo-title {
+            font-family: 'Bebas Neue', Impact, sans-serif;
+            font-size: 3rem;
+            letter-spacing: 0.2em;
+            color: var(--retro-teal);
+            text-transform: uppercase;
+        }
+
+        .logo-subtitle {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--retro-orange);
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        /* Séparateur */
+        .retro-separator {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 25px 0;
+            color: var(--retro-teal);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .retro-separator::before,
+        .retro-separator::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--retro-teal) 20%, var(--retro-teal) 80%, transparent);
+        }
+
+        .retro-separator .flourish {
+            font-size: 1.2rem;
+            opacity: 0.7;
+        }
+
+        /* Texte d'introduction */
+        .intro-text {
+            text-align: center;
+            color: var(--retro-ink);
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 400px;
+            margin-bottom: 30px;
+        }
+
+        .intro-text strong {
+            color: var(--retro-teal);
+        }
+
+        /* Formulaire */
+        .code-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .code-input {
+            width: 100%;
+            padding: 16px 24px;
+            font-family: 'Bebas Neue', Impact, sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.3em;
+            text-align: center;
+            background: var(--retro-paper);
+            border: 3px solid var(--retro-teal);
+            border-radius: 8px;
+            color: var(--retro-ink);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .code-input::placeholder {
+            color: var(--retro-teal);
+            opacity: 0.4;
+            letter-spacing: 0.1em;
+        }
+
+        .code-input:focus {
+            border-color: var(--retro-orange);
+            box-shadow: 0 0 0 3px rgba(228, 99, 46, 0.2);
+        }
+
+        /* Bouton pill rétrofuturiste */
+        .retro-btn-pill {
+            display: inline-flex;
+            border-radius: 50px;
+            border: 3px solid var(--retro-teal);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .retro-btn-pill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(18, 118, 118, 0.3);
+        }
+
+        .retro-btn-pill-text {
+            background: var(--retro-jaune);
+            color: var(--retro-ink);
+            padding: 14px 28px;
+            font-family: 'Bebas Neue', Impact, sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .retro-btn-pill-icon {
+            background: var(--retro-orange);
+            color: var(--retro-paper);
+            width: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* Message d'erreur */
+        .error-message {
+            background: rgba(228, 99, 46, 0.1);
+            border-left: 4px solid var(--retro-orange);
+            padding: 12px 16px;
+            color: var(--retro-ink);
+            font-size: 0.9rem;
+            text-align: center;
+            border-radius: 0 8px 8px 0;
+            max-width: 400px;
+            display: none;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+
+        /* Écran de chargement / animation */
+        .loading-screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .loading-title {
+            font-family: 'Bebas Neue', Impact, sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.15em;
+            color: var(--retro-teal);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        /* Spinner géométrique */
+        .spinner-container {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .spinner-hexagon {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: spin 3s linear infinite;
+        }
+
+        .spinner-hexagon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .spinner-inner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            animation: spin 2s linear infinite reverse;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes spinReverse {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(-360deg); }
+        }
+
+        .spinner-inner {
+            animation: spinReverse 2s linear infinite;
+        }
+
+        /* Étapes textuelles */
+        .loading-steps {
+            min-height: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-text {
+            font-size: 0.95rem;
+            color: var(--retro-ink);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+
+        .step-text.active {
+            opacity: 1;
+            transform: translateY(0);
+            color: var(--retro-teal);
+        }
+
+        .step-text.done {
+            opacity: 0.4;
+            font-size: 0.85rem;
+        }
+
+        /* Barre de progression */
+        .progress-bar {
+            width: 100%;
+            max-width: 300px;
+            height: 8px;
+            background: rgba(18, 118, 118, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--retro-teal), var(--retro-orange), var(--retro-jaune));
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        /* Masquer l'écran principal pendant le chargement */
+        .main-content.hidden {
+            display: none;
+        }
+
+        .loading-screen.active {
+            display: flex;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .page-frame {
+                padding: 50px 25px;
+            }
+
+            .logo-title {
+                font-size: 2.2rem;
+            }
+
+            .code-input {
+                font-size: 1.2rem;
+                padding: 14px 20px;
+            }
+
+            .retro-btn-pill-text {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+
+            .retro-btn-pill-icon {
+                width: 46px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-frame">
+        <!-- Ornements aux coins -->
+        <span class="corner-flourish top-left">❧</span>
+        <span class="corner-flourish top-right">❧</span>
+        <span class="corner-flourish bottom-left">❧</span>
+        <span class="corner-flourish bottom-right">❧</span>
+
+        <!-- Contenu principal -->
+        <div class="main-content" id="mainContent">
+            <!-- Logo -->
+            <div class="logo-container">
+                <div class="logo-symbol">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Hexagone externe -->
+                        <polygon points="50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5" 
+                                 fill="none" stroke="#127676" stroke-width="3"/>
+                        <!-- Hexagone interne -->
+                        <polygon points="50,20 78,35 78,65 50,80 22,65 22,35" 
+                                 fill="none" stroke="#E4632E" stroke-width="2"/>
+                        <!-- Point central -->
+                        <circle cx="50" cy="50" r="8" fill="#E3A535"/>
+                        <!-- Lignes de connexion -->
+                        <line x1="50" y1="20" x2="50" y2="42" stroke="#127676" stroke-width="1.5"/>
+                        <line x1="50" y1="58" x2="50" y2="80" stroke="#127676" stroke-width="1.5"/>
+                        <line x1="22" y1="35" x2="42" y2="45" stroke="#127676" stroke-width="1.5"/>
+                        <line x1="58" y1="55" x2="78" y2="65" stroke="#127676" stroke-width="1.5"/>
+                        <line x1="22" y1="65" x2="42" y2="55" stroke="#127676" stroke-width="1.5"/>
+                        <line x1="58" y1="45" x2="78" y2="35" stroke="#127676" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <h1 class="logo-title">HEDRA</h1>
+                <p class="logo-subtitle">Système de Génération Pédagogique</p>
+            </div>
+
+            <div class="retro-separator">
+                <span class="flourish">✿</span>
+            </div>
+
+            <!-- Texte d'introduction -->
+            <p class="intro-text">
+                Votre <strong>profil collectif</strong> a été analysé.<br>
+                <strong>HEDRA</strong> est prête à générer votre parcours personnalisé.<br><br>
+                Saisissez le <strong>code de synchronisation</strong> transmis par votre référent pour lancer la synthèse.
+            </p>
+
+            <!-- Formulaire -->
+            <form class="code-form" id="codeForm">
+                <div class="input-wrapper">
+                    <input type="password" 
+                           class="code-input" 
+                           id="codeInput" 
+                           placeholder="• • • •" 
+                           maxlength="10"
+                           autocomplete="off"
+                           required>
+                </div>
+                <button type="submit" class="retro-btn-pill">
+                    <span class="retro-btn-pill-text">Lancer la synthèse</span>
+                    <span class="retro-btn-pill-icon">»</span>
+                </button>
+            </form>
+
+            <!-- Message d'erreur -->
+            <div class="error-message" id="errorMessage">
+                Profil non détecté dans la base de données.<br>
+                Contactez votre référent humain.
+            </div>
+        </div>
+
+        <!-- Écran de chargement -->
+        <div class="loading-screen" id="loadingScreen">
+            <h2 class="loading-title">Génération en cours</h2>
+
+            <div class="spinner-container">
+                <div class="spinner-hexagon">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5" 
+                                 fill="none" stroke="#127676" stroke-width="3"/>
+                    </svg>
+                </div>
+                <div class="spinner-inner">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="50,15 85,32.5 85,67.5 50,85 15,67.5 15,32.5" 
+                                 fill="none" stroke="#E4632E" stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="loading-steps" id="loadingSteps">
+                <p class="step-text" id="step1">Décodage du profil collectif...</p>
+                <p class="step-text" id="step2">Activation des circuits neuronaux...</p>
+                <p class="step-text" id="step3">Calibration des séquences pédagogiques...</p>
+                <p class="step-text" id="step4">Synchronisation terminée ✓</p>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const SECRET_CODE = '1984';
+        const REDIRECT_URL = 'https://borzeux.my.canva.site/intro-ia/page-9';
+
+        const codeForm = document.getElementById('codeForm');
+        const codeInput = document.getElementById('codeInput');
+        const errorMessage = document.getElementById('errorMessage');
+        const mainContent = document.getElementById('mainContent');
+        const loadingScreen = document.getElementById('loadingScreen');
+        const progressFill = document.getElementById('progressFill');
+
+        const steps = [
+            { id: 'step1', delay: 0, duration: 2000 },
+            { id: 'step2', delay: 2000, duration: 2000 },
+            { id: 'step3', delay: 4000, duration: 2000 },
+            { id: 'step4', delay: 6000, duration: 1500 }
+        ];
+
+        codeForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const enteredCode = codeInput.value.trim();
+            
+            if (enteredCode === SECRET_CODE) {
+                // Code correct - lancer l'animation
+                startLoadingAnimation();
+            } else {
+                // Code incorrect - afficher erreur
+                showError();
+            }
+        });
+
+        function showError() {
+            // Reset de l'animation en forçant un reflow
+            errorMessage.style.display = 'none';
+            errorMessage.style.animation = 'none';
+            errorMessage.offsetHeight; // Force reflow
+            errorMessage.style.animation = '';
+            
+            // Afficher le message
+            errorMessage.style.display = 'block';
+            codeInput.value = '';
+            codeInput.focus();
+            
+            // Masquer l'erreur après 4 secondes
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 4000);
+        }
+
+        function startLoadingAnimation() {
+            // Masquer le contenu principal, afficher l'écran de chargement
+            mainContent.classList.add('hidden');
+            loadingScreen.classList.add('active');
+
+            // Animation des étapes
+            let progress = 0;
+            const totalDuration = 7500;
+            const progressInterval = setInterval(() => {
+                progress += 2;
+                progressFill.style.width = Math.min(progress, 100) + '%';
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                }
+            }, totalDuration / 50);
+
+            // Afficher chaque étape
+            steps.forEach((step, index) => {
+                setTimeout(() => {
+                    // Marquer les étapes précédentes comme terminées
+                    for (let i = 0; i < index; i++) {
+                        document.getElementById(steps[i].id).classList.remove('active');
+                        document.getElementById(steps[i].id).classList.add('done');
+                    }
+                    // Activer l'étape courante
+                    document.getElementById(step.id).classList.add('active');
+                }, step.delay);
+            });
+
+            // Redirection après l'animation
+            setTimeout(() => {
+                window.location.href = REDIRECT_URL;
+            }, 8000);
+        }
+
+        // Focus automatique sur l'input au chargement
+        window.addEventListener('load', () => {
+            codeInput.focus();
+        });
+    </script>
+</body>
+</html>
