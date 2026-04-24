@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HEDRA — Système de Génération Pédagogique</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HEDRA — Système de Génération Pédagogique</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --retro-teal: #127676;
             --retro-orange: #E4632E;
@@ -400,113 +401,92 @@
     </style>
 </head>
 <body>
-    <div class="page-frame">
-        <!-- Ornements aux coins -->
-        <span class="corner-flourish top-left">❧</span>
-        <span class="corner-flourish top-right">❧</span>
-        <span class="corner-flourish bottom-left">❧</span>
-        <span class="corner-flourish bottom-right">❧</span>
-
-        <!-- Contenu principal -->
-        <div class="main-content" id="mainContent">
-            <!-- Logo -->
-            <div class="logo-container">
-                <div class="logo-symbol">
-                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Hexagone externe -->
-                        <polygon points="50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5" 
-                                 fill="none" stroke="#127676" stroke-width="3"/>
-                        <!-- Hexagone interne -->
-                        <polygon points="50,20 78,35 78,65 50,80 22,65 22,35" 
-                                 fill="none" stroke="#E4632E" stroke-width="2"/>
-                        <!-- Point central -->
-                        <circle cx="50" cy="50" r="8" fill="#E3A535"/>
-                        <!-- Lignes de connexion -->
-                        <line x1="50" y1="20" x2="50" y2="42" stroke="#127676" stroke-width="1.5"/>
-                        <line x1="50" y1="58" x2="50" y2="80" stroke="#127676" stroke-width="1.5"/>
-                        <line x1="22" y1="35" x2="42" y2="45" stroke="#127676" stroke-width="1.5"/>
-                        <line x1="58" y1="55" x2="78" y2="65" stroke="#127676" stroke-width="1.5"/>
-                        <line x1="22" y1="65" x2="42" y2="55" stroke="#127676" stroke-width="1.5"/>
-                        <line x1="58" y1="45" x2="78" y2="35" stroke="#127676" stroke-width="1.5"/>
-                    </svg>
-                </div>
-                <h1 class="logo-title">HEDRA</h1>
-                <p class="logo-subtitle">Système de Génération Pédagogique</p>
-            </div>
-
-            <div class="retro-separator">
-                <span class="flourish">✿</span>
-            </div>
-
-            <!-- Texte d'introduction -->
-            <p class="intro-text">
-                Votre <strong>profil collectif</strong> a été analysé.<br>
-                <strong>HEDRA</strong> est prête à générer votre parcours personnalisé.<br><br>
+<div class="page-frame">
+<!-- Ornements aux coins -->
+<span class="corner-flourish top-left">❧</span>
+<span class="corner-flourish top-right">❧</span>
+<span class="corner-flourish bottom-left">❧</span>
+<span class="corner-flourish bottom-right">❧</span>
+<!-- Contenu principal -->
+<div class="main-content" id="mainContent">
+<!-- Logo -->
+<div class="logo-container">
+<div class="logo-symbol">
+<svg fill="none" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<!-- Hexagone externe -->
+<polygon fill="none" points="50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5" stroke="#127676" stroke-width="3"></polygon>
+<!-- Hexagone interne -->
+<polygon fill="none" points="50,20 78,35 78,65 50,80 22,65 22,35" stroke="#E4632E" stroke-width="2"></polygon>
+<!-- Point central -->
+<circle cx="50" cy="50" fill="#E3A535" r="8"></circle>
+<!-- Lignes de connexion -->
+<line stroke="#127676" stroke-width="1.5" x1="50" x2="50" y1="20" y2="42"></line>
+<line stroke="#127676" stroke-width="1.5" x1="50" x2="50" y1="58" y2="80"></line>
+<line stroke="#127676" stroke-width="1.5" x1="22" x2="42" y1="35" y2="45"></line>
+<line stroke="#127676" stroke-width="1.5" x1="58" x2="78" y1="55" y2="65"></line>
+<line stroke="#127676" stroke-width="1.5" x1="22" x2="42" y1="65" y2="55"></line>
+<line stroke="#127676" stroke-width="1.5" x1="58" x2="78" y1="45" y2="35"></line>
+</svg>
+</div>
+<h1 class="logo-title">HEDRA</h1>
+<p class="logo-subtitle">Système de Génération Pédagogique</p>
+</div>
+<div class="retro-separator">
+<span class="flourish">✿</span>
+</div>
+<!-- Texte d'introduction -->
+<p class="intro-text">
+                Votre <strong>profil collectif</strong> a été analysé.<br/>
+<strong>HEDRA</strong> est prête à générer votre parcours personnalisé.<br/><br/>
                 Saisissez le <strong>code de synchronisation</strong> transmis par votre référent pour lancer la synthèse.
             </p>
-
-            <!-- Formulaire -->
-            <form class="code-form" id="codeForm">
-                <div class="input-wrapper">
-                    <input type="password" 
-                           class="code-input" 
-                           id="codeInput" 
-                           placeholder="• • • •" 
-                           maxlength="10"
-                           autocomplete="off"
-                           required>
-                </div>
-                <button type="submit" class="retro-btn-pill">
-                    <span class="retro-btn-pill-text">Lancer la synthèse</span>
-                    <span class="retro-btn-pill-icon">»</span>
-                </button>
-            </form>
-
-            <!-- Message d'erreur -->
-            <div class="error-message" id="errorMessage">
-                Profil non détecté dans la base de données.<br>
+<!-- Formulaire -->
+<form class="code-form" id="codeForm">
+<div class="input-wrapper">
+<input autocomplete="off" class="code-input" id="codeInput" maxlength="10" placeholder="• • • •" required="" type="password"/>
+</div>
+<button class="retro-btn-pill" type="submit">
+<span class="retro-btn-pill-text">Lancer la synthèse</span>
+<span class="retro-btn-pill-icon">»</span>
+</button>
+</form>
+<!-- Message d'erreur -->
+<div class="error-message" id="errorMessage">
+                Profil non détecté dans la base de données.<br/>
                 Contactez votre référent humain.
             </div>
-        </div>
-
-        <!-- Écran de chargement -->
-        <div class="loading-screen" id="loadingScreen">
-            <h2 class="loading-title">Génération en cours</h2>
-
-            <div class="spinner-container">
-                <div class="spinner-hexagon">
-                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <polygon points="50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5" 
-                                 fill="none" stroke="#127676" stroke-width="3"/>
-                    </svg>
-                </div>
-                <div class="spinner-inner">
-                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <polygon points="50,15 85,32.5 85,67.5 50,85 15,67.5 15,32.5" 
-                                 fill="none" stroke="#E4632E" stroke-width="2"/>
-                    </svg>
-                </div>
-            </div>
-
-            <div class="loading-steps" id="loadingSteps">
-                <p class="step-text" id="step1">Décodage du profil collectif...</p>
-                <p class="step-text" id="step2">Activation des circuits neuronaux...</p>
-                <p class="step-text" id="step3">Calibration des séquences pédagogiques...</p>
-                <p class="step-text" id="step4">Synchronisation terminée ✓</p>
-            </div>
-
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-        </div>
-    <div class="ab-attribution" style="text-align:center;margin-top:2rem;padding-top:1rem;border-top:1px solid rgba(128,128,128,0.25);font-size:0.8rem;opacity:0.65;">
-  <a href="https://www.linkedin.com/in/antonin-bareau/" target="_blank" rel="noopener" style="font-weight:bold;color:inherit;text-decoration:none;">Antonin Bareau</a>
-  &nbsp;&mdash;&nbsp;
-  <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">Licence CC BY-SA 4.0</a>
+</div>
+<!-- Écran de chargement -->
+<div class="loading-screen" id="loadingScreen">
+<h2 class="loading-title">Génération en cours</h2>
+<div class="spinner-container">
+<div class="spinner-hexagon">
+<svg fill="none" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<polygon fill="none" points="50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5" stroke="#127676" stroke-width="3"></polygon>
+</svg>
+</div>
+<div class="spinner-inner">
+<svg fill="none" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<polygon fill="none" points="50,15 85,32.5 85,67.5 50,85 15,67.5 15,32.5" stroke="#E4632E" stroke-width="2"></polygon>
+</svg>
 </div>
 </div>
-
-    <script>
+<div class="loading-steps" id="loadingSteps">
+<p class="step-text" id="step1">Décodage du profil collectif...</p>
+<p class="step-text" id="step2">Activation des circuits neuronaux...</p>
+<p class="step-text" id="step3">Calibration des séquences pédagogiques...</p>
+<p class="step-text" id="step4">Synchronisation terminée ✓</p>
+</div>
+<div class="progress-bar">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+</div>
+<div class="ab-attribution" style="text-align:center;margin-top:2rem;padding-top:1rem;border-top:1px solid rgba(128,128,128,0.25);font-size:0.8rem;opacity:0.65;">
+<a href="https://www.linkedin.com/in/antonin-bareau/" rel="noopener" style="font-weight:bold;color:inherit;text-decoration:none;" target="_blank">Antonin Bareau</a>
+   — 
+  <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener" style="color:inherit;text-decoration:none;" target="_blank">Licence CC BY-SA 4.0</a>
+</div></div>
+<script>
         const SECRET_CODE = '1984';
         const REDIRECT_URL = 'https://borzeux.my.canva.site/intro-ia/page-9';
 
@@ -596,6 +576,5 @@
             codeInput.focus();
         });
     </script>
-
 </body>
 </html>
